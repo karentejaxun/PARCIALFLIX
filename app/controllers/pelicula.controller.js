@@ -27,7 +27,7 @@ exports.create = (req, res) => {
     };
 
     // Save a new Client into the database
-    Pelicula.create(nuevapelicula)
+    pelicula.create(nuevapelicula)
         .then(data => {
             res.send(data);
         })
@@ -44,7 +44,7 @@ exports.findAll = (req, res) => {
     const nombre = req.query.nombre;
     var condition = nombre ? { nombre: { [Op.iLike]: `%${nombre}%` } } : null;
 
-    Pelicula.findAll({ where: condition })
+    pelicula.findAll({ where: condition })
         .then(data => {
             res.send(data);
         })
@@ -60,7 +60,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Pelicula.findByPk(id)
+    pelicula.findByPk(id)
         .then(data => {
             res.send(data);
         })
@@ -75,7 +75,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
 
-    Pelicula.update(req.body, {
+    pelicula.update(req.body, {
         where: { id: id }
     })
         .then(num => {
@@ -100,7 +100,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
     // utilizamos el metodo destroy para eliminar el objeto mandamos la condicionante where id = parametro que recibimos 
-    Pelicula.destroy({
+    pelicula.destroy({
         where: { id: id }
     })
         .then(num => {
@@ -123,7 +123,7 @@ exports.delete = (req, res) => {
 
 // Delete all Clients from the database.
 exports.deleteAll = (req, res) => {
-    Pelicula.destroy({
+    pelicula.destroy({
         where: {},
         truncate: false
     })
@@ -140,7 +140,7 @@ exports.deleteAll = (req, res) => {
 
 // find all active Client, basado en el atributo status vamos a buscar que solo los clientes activos
 exports.findAllStatus = (req, res) => {
-    Pelicula.findAll({ where: { status: true } })
+    pelicula.findAll({ where: { status: true } })
         .then(data => {
             res.send(data);
         })
