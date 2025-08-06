@@ -17,7 +17,7 @@ exports.create = (req, res) => {
     const nuevapelicula = {
         nombre: req.body.nombre,
         sinopis: req.body.sinopis,
-        actores: req.body.actores, 
+        actor: req.body.actor, 
         duracion: req.body.duracion,
         tipo: req.body.tipo,
         categoria: req.body.categoria,
